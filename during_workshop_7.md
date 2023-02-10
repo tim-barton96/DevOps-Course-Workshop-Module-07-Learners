@@ -14,10 +14,17 @@ There are two options for running Jenkins locally, you can either install Jenkin
 
 > If you're on Windows make sure to run the commands in PowerShell rather than Git Bash to avoid issues with path expansion.
 
+<details>
+<summary>If you're having issues</summary>
+
+
+
+</details>
+
 ### Step 2 - Set up Jenkins
 Once you've done the step above you should have Jenkins running on <http://localhost:8080/>. If you go to this url in a browser it should show you a setup page.
 1. Login with the password you got from the logs when starting Jenkins. **Hint:** You can run `docker logs your_container` to access a container's logs. Run `docker container ls` to view a list of running containers.
-2. Now you have the option to select some initial plugins. Either select the suggested plugins or if you customise it, make sure you include the "GitHub", "Docker" and "Docker Pipeline" plugins. We won't need any others right away, and you can add more later.
+2. Now you have the option to select some initial plugins. Either select the suggested plugins or if you customise it, make sure you include the "Docker" plugin. We won't need any others right away, and you can add more later.
 3. Create an admin user.
 4. Use the default Jenkins URL (<http://localhost:8080>)
 
@@ -33,6 +40,8 @@ From your Jenkins dashboard:
 3. Leave all the defaults other than setting the branch sources to GitHub. Leave the defaults for the branch source other than setting the repository url to your repository url. You may notice a warning about not using GitHub credentials at this point. This is fine, as we're just reading from a public repository we don't need credentials. If we were using a private repository or we were writing to the repository during the job, then we would need to set up credentials.
 4. Click Save to create the Jenkins job.
 
+If the initial scan that it runs seems to be slow, see the hint below for how to adjust GitHub rate limiting.
+
 #### Create a Jenkinsfile
 See <https://www.jenkins.io/doc/book/pipeline/jenkinsfile/> for details on how to create a Jenkinsfile. We want to add the same steps as for the GitHub Actions workflow so that it:
 1. Builds the C# code.
@@ -47,7 +56,7 @@ You have 2 options for installing .NET Core & npm inside Jenkins:
 2. [Specify containers to run stages of the Jenkins pipeline with .NET Core and npm pre-installed](https://www.jenkins.io/doc/book/pipeline/docker/)
     * The simplest approach is to have one stage for your `npm` commands and a second stage for your `dotnet` commands, because each stage can have its own agent. You will have to specify `agent none` at the top of the pipeline.
     * There are some pre-built images for npm (e.g. `node:17-bullseye`)
-    * Similarly for .NET you can use [Microsoft's image](https://hub.docker.com/_/microsoft-dotnet-sdk). You may need to set an environment variable `DOTNET_CLI_HOME` (e.g. to `"/tmp/dotnet_cli_home"`) in your Jenkinsfile for the dotnet CLI to work correctly.
+    * Similarly for .NET you can use [Microsoft's image](https://hub.docker.com/_/microsoft-dotnet-sdk). You may need to set some environment variables in your Jenkinsfile for the dotnet CLI to work correctly: `DOTNET_CLI_HOME` (e.g. to `"/tmp/dotnet_cli_home"`) and `XDG_DATA_HOME` (e.g. to `"/tmp"`).
 
 <details>
 <summary>Hints</summary>
