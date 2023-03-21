@@ -10,7 +10,7 @@ We'll be working on top of this repository. Because you'll need to change some s
 
 ### Step 2 - Set up the app
 
-Follow the instructions in the [README](./README.md) to try running the application locally. **If you encounter issues running the app locally, feel free to skip to step 3 instead of spending time resolving the issues.** The only benefit of running it locally first is to better understand what you want your pipeline to replicate.
+Follow the instructions in the [Running Locally](./run_locally.md) section to try running the application locally. **If you encounter issues running the app locally, feel free to skip to step 3 instead of spending time resolving the issues.** The only benefit of running it locally first is to better understand what you want your pipeline to replicate.
 
 ### Step 3 - Set up GitHub Actions
 
