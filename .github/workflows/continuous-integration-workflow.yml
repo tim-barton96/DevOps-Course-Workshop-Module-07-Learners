@@ -18,6 +18,9 @@ jobs:
           cd DotnetTemplate.Web
           npm ci
       - name: Test TS
-        run: npm t
+        run: |
+          cd DotnetTemplate.Web
+          npm t
+          npm run lint
       - name: Linting for TS
         run: npm run lint
