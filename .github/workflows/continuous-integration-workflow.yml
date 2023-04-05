@@ -14,7 +14,8 @@ jobs:
         run: dotnet test
 
       - name: Build TS
-        run: cd DotnetTemplate.web npm ci
+        run: cd DotnetTemplate.web
+          npm ci
       - name: Test TS
         run: npm t
       - name: Linting for TS
