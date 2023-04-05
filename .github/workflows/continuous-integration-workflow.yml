@@ -15,7 +15,7 @@ jobs:
 
       - name: Build TS
         run: |
-          cd DotnetTemplate.web
+          cd DotnetTemplate.Web
           npm ci
       - name: Test TS
         run: npm t
